@@ -139,8 +139,8 @@ def diffraction_to_pdf_from_config(
 if __name__ == "__main__":
     # diffraction_to_pdf()
 
-    input_path = "workspaces/pdfcurl/examples/Si_pe2_i15_1.xy"
-    output_path = "workspaces/pdfcurl/examples/Si_pe2_i15_1_pdf.xy"
+    input_path = "/workspaces/pdfcurl/examples/Si_pe2_i15_1.xy"
+    output_path = "/workspaces/pdfcurl/examples/Si_pe2_i15_1_pdf.xy"
 
     DEFAULT_CONFIG = PDFGetConfig(
         dataformat="twotheta",
