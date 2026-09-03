@@ -81,4 +81,4 @@ USER ubuntu
 
 # change this entrypoint if it is not the same as the repo
 ENTRYPOINT ["pdfcurl"]
-CMD ["--version"]
+CMD ["serve"]
