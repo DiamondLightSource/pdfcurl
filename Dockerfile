@@ -67,12 +67,12 @@ ENV PATH=/app/.venv/bin:$PATH
 
 # Add copy of source to container for debugging
 WORKDIR /workspaces
-COPY --chown=1000:1000 . pdfcurl3
+COPY --chown=1000:1000 . pdfcurl
 # Make allowance for non-1000 uid
-RUN chmod o+wrX pdfcurl3
+RUN chmod o+wrX pdfcurl
 
 # Make invariant symlink to site-packages for debugging
-# /app/.venv/lib/python/site-packages/pdfcurl3:/workspaces/pdfcurl3
+# /app/.venv/lib/python/site-packages/pdfcurl:/workspaces/pdfcurl
 WORKDIR /app/.venv/lib
 RUN ln -s python* python
 

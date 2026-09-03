@@ -1,9 +1,10 @@
 from contextlib import asynccontextmanager
 
-import pdfcurl3
 from fastapi import APIRouter, FastAPI, Request
-from pdfcurl3._version import __version__
-from pdfcurl3.logger import logger
+
+import pdfcurl
+from pdfcurl._version import __version__
+from pdfcurl.logger import logger
 
 ROUTER = APIRouter()
 
@@ -38,7 +39,7 @@ async def lifespan(app: FastAPI):
 def start_api():
 
     app = FastAPI(
-        title=pdfcurl3.__name__.capitalize(),
+        title=pdfcurl.__name__.capitalize(),
         version=__version__,
         description="An API for PDFGetX3 jobs",
         lifespan=lifespan,

@@ -5,9 +5,10 @@ from typing import Literal
 
 import matplotlib.pyplot as plt
 from diffpy.pdfgetx import plotdata
-from pdfcurl3.logger import logger
-from pdfcurl3.templates import formatted_config_template
 from pydantic import BaseModel, computed_field, model_validator
+
+from pdfcurl.logger import logger
+from pdfcurl.templates import formatted_config_template
 
 OUTPUT_TYPES = Literal["iq", "sq", "fq", "gr"]
 
@@ -138,8 +139,8 @@ def diffraction_to_pdf_from_config(
 if __name__ == "__main__":
     # diffraction_to_pdf()
 
-    input_path = "/workspaces/pdfcurl3/examples/Si_pe2_i15_1.xy"
-    output_path = "/workspaces/pdfcurl3/examples/Si_pe2_i15_1_pdf.xy"
+    input_path = "workspaces/pdfcurl/examples/Si_pe2_i15_1.xy"
+    output_path = "workspaces/pdfcurl/examples/Si_pe2_i15_1_pdf.xy"
 
     DEFAULT_CONFIG = PDFGetConfig(
         dataformat="twotheta",

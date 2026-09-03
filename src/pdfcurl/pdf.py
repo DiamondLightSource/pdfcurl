@@ -3,7 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import numpy as np
-from scipy.fft import fft
+
+# from scipy.fft import fft
 
 # ============================================================
 # DATA MODELS
@@ -168,17 +169,17 @@ def lorch_window(q: np.ndarray, qmax: float) -> np.ndarray:
 # ============================================================
 
 
-def compute_gr(fq: np.ndarray, q: np.ndarray, rmax: float):
-    dq = q[1] - q[0]
-    n = len(fq)
+# def compute_gr(fq: np.ndarray, q: np.ndarray, rmax: float):
+#     dq = q[1] - q[0]
+#     n = len(fq)
 
-    fft_fq = fft(fq, n)
+#     fft_fq = fft(fq, n)
 
-    r = np.linspace(0.0, rmax, n)
+#     r = np.linspace(0.0, rmax, n)
 
-    gr = -(2.0 / np.pi) * dq * np.imag(fft_fq)
+#     gr = -(2.0 / np.pi) * dq * np.imag(fft_fq)
 
-    return r, gr
+#     return r, gr
 
 
 # ============================================================
@@ -216,24 +217,24 @@ def compute_pdf(
         fq *= lorch_window(q_grid, config.qmax)
 
     # 8. G(R)
-    r, gr = compute_gr(fq, q_grid, config.rmax)
+    # r, gr = compute_gr(fq, q_grid, config.rmax)
 
     return PDFResult(
-        q=q_grid,
+        q=fq,
         fq=fq,
-        gr=gr,
-        r=r,
+        gr=fq,
+        r=fq,
     )
 
 
-if __name__ == "__main__":
-    pattern = Pattern()
-    exp = Experiment()
-    config = PDFConfig()
+# if __name__ == "__main__":
+#     pattern = Pattern()
+#     exp = Experiment()
+#     config = PDFConfig()
 
-    pdf = compute_pdf(pattern=pattern, exp=exp, config=config)
+#     pdf = compute_pdf(pattern=pattern, exp=exp, config=config)
 
-    import matplotlib.pyplot as plt
+#     import matplotlib.pyplot as plt
 
-    plt.plot(pdf.q, pdf.gr)
-    plt.show()
+#     plt.plot(pdf.q, pdf.gr)
+#     plt.show()
