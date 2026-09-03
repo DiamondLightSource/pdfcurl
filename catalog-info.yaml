@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: pdfcurl
+  title: pdfcurl
+  description: An API for PDFGetX3
+spec:
+  type: application
+  lifecycle: experimental
+  owner: group:default/data-analysis
