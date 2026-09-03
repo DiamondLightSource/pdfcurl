@@ -1,0 +1,52 @@
+from contextlib import asynccontextmanager
+
+import pdfcurl3
+from fastapi import APIRouter, FastAPI, Request
+from pdfcurl3._version import __version__
+from pdfcurl3.logger import logger
+
+ROUTER = APIRouter()
+
+HEALTH_ROUTE = "/healthz"
+DATA2PDF = "/data2pdf"
+
+
+@ROUTER.get(HEALTH_ROUTE)
+async def health():
+    return {"status": "ok"}
+
+
+# New endpoint to return all jobs/results if enabled in config
+@ROUTER.get(DATA2PDF)
+async def get_all_results(request: Request):
+
+    results = "done"
+
+    return results
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+
+    logger.info("PDFAPI started")
+
+    yield
+
+    logger.info("Shutting down")
+
+
+def start_api():
+
+    app = FastAPI(
+        title=pdfcurl3.__name__.capitalize(),
+        version=__version__,
+        description="An API for PDFGetX3 jobs",
+        lifespan=lifespan,
+    )
+
+    # Include API routes
+    app.include_router(ROUTER)
+
+
+if __name__ == "__main__":
+    start_api()

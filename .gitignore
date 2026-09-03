@@ -5,6 +5,10 @@ __pycache__/
 # C extensions
 *.so
 
+#PDFGetX3 outputs
+*.gr
+*.sq
+
 # Distribution / packaging
 .Python
 env/

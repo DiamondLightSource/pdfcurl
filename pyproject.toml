@@ -13,7 +13,19 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 description = "An API for PDFGetX3"
-dependencies = [] # Add project dependencies here, e.g. ["click", "numpy"]
+dependencies = [
+    "numpy",
+    "scipy",
+    "pydantic",
+    "requests",
+    "stomp.py",
+    "fastapi",
+    "uvicorn",
+    "pyyaml",
+    "h5py",
+    "matplotlib",
+    "diffpy-cmi",
+] # Add project dependencies here, e.g. ["click", "numpy"]
 dynamic = ["version"]
 license.file = "LICENSE"
 readme = "README.md"
@@ -21,15 +33,18 @@ requires-python = ">=3.11"
 
 [dependency-groups]
 dev = [
+    "httpx",
+    "copier",
     "pre-commit",
     "pyright",
     "pytest",
+    "pytest-asyncio",
     "pytest-cov",
     "ruff",
     "tox-uv",
     "types-mock",
+    "pytest-mock",
 ]
-
 [project.scripts]
 pdfcurl = "pdfcurl.__main__:main"
 
@@ -45,7 +60,7 @@ version_file = "src/pdfcurl/_version.py"
 
 [tool.pyright]
 typeCheckingMode = "standard"
-reportMissingImports = false # Ignore missing stubs in imported modules
+reportMissingImports = false  # Ignore missing stubs in imported modules
 
 [tool.pytest.ini_options]
 # Run pytest with all our checkers, and don't spam us with massive tracebacks on error
