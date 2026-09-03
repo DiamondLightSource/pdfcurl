@@ -1,23 +1,38 @@
-"""Interface for ``python -m pdfcurl``."""
+"""Interface for ``python -m heliotrapi``."""
 
-from argparse import ArgumentParser
-from collections.abc import Sequence
+import click
 
-from . import __version__
+from ._version import __version__
 
 __all__ = ["main"]
 
 
-def main(args: Sequence[str] | None = None) -> None:
-    """Argument parser for the CLI."""
-    parser = ArgumentParser()
-    parser.add_argument(
-        "-v",
-        "--version",
-        action="version",
-        version=__version__,
+@click.group(invoke_without_command=True)
+@click.version_option(version=__version__, message="%(version)s")
+@click.pass_context
+def main(
+    ctx: click.Context,
+) -> None:
+
+    if ctx.invoked_subcommand is None:
+        print("Please invoke subcommand!")
+
+
+@main.command(name="serve")
+@click.pass_context
+def serve(ctx: click.Context):
+
+    import uvicorn
+
+    from pdfcurl.server import start_api
+
+    uvicorn.run(
+        start_api(),
+        factory=False,
+        host="localhost",
+        port=8000,
+        reload=False,
     )
-    parser.parse_args(args)
 
 
 if __name__ == "__main__":

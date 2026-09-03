@@ -36,7 +36,7 @@ async def lifespan(app: FastAPI):
     logger.info("Shutting down")
 
 
-def start_api():
+def start_api() -> FastAPI:
 
     app = FastAPI(
         title=pdfcurl.__name__.capitalize(),
@@ -47,6 +47,7 @@ def start_api():
 
     # Include API routes
     app.include_router(ROUTER)
+    return app
 
 
 if __name__ == "__main__":
